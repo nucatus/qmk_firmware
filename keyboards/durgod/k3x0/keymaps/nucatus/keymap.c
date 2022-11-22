@@ -109,4 +109,9 @@ void double_tap_q(qk_tap_dance_state_t *state, void *user_data) {
     tap_code16(KC_ENT);
     reset_tap_dance(state);
   }
+  if (state->count == 3) {
+    SEND_STRING(":q!");
+    tap_code16(KC_ENT);
+    reset_tap_dance(state);
+  }
 }
