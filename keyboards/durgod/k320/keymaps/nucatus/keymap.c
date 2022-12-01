@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-
 enum _layers {
 	_QWR_LAYER,
 	_DV_LAYER,
@@ -32,6 +31,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #ifndef DEFAULT_LAYOUT
 # define DEFAULT_LAYOUT _QWR_LAYER
 #endif
+
+#define ncts_ko_shift_num_dvp(kc_num)                                   \
+  ((const key_override_t){                                              \
+       .trigger_mods           = (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)), \
+       .layers                 = (1 << _DVP_LAYER),                     \
+       .suppressed_mods        = (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)), \
+       .custom_action          = (flush_modifiers),                     \
+       .options                = (ko_options_default),                  \
+       .trigger                = (kc_num),                              \
+       .replacement            = (kc_num),                              \
+       .enabled                = (NULL)                                 \
+  })
 
 /*
 [_TRANSP_LAYER] = LAYOUT_tkl_ansi(
@@ -105,96 +116,16 @@ const key_override_t ko_sh_rbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT,
 const key_override_t ko_sh_eql = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_EQL,  KC_2,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + = is @
 const key_override_t ko_sh_bsl = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_BSLS, KC_3,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + \ is #
 
-const key_override_t ko_sh_1 = {                                                                               // shift + 1 is 1
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_1,
-                                   .replacement            = KC_1,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_2 = {                                                                               // shift + 2 is 2
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_2,
-                                   .replacement            = KC_2,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_3 = {                                                                               // shift + 3 is 3
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_3,
-                                   .replacement            = KC_3,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_4 = {                                                                               // shift + 4 is 4
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_4,
-                                   .replacement            = KC_4,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_5 = {                                                                               // shift + 5 is 5
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_5,
-                                   .replacement            = KC_5,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_6 = {                                                                               // shift + 6 is 6
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_6,
-                                   .replacement            = KC_6,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_7 = {                                                                               // shift + 7 is 7
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_7,
-                                   .replacement            = KC_7,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_8 = {                                                                               // shift + 8 is 8
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_8,
-                                   .replacement            = KC_8,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_9 = {                                                                               // shift + 9 is 9
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_9,
-                                   .replacement            = KC_9,
-                                   .enabled                = NULL};
-const key_override_t ko_sh_0 = {                                                                               // shift + 0 is 0
-                                   .trigger_mods           = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .layers                 = 1 << _DVP_LAYER,
-                                   .suppressed_mods        = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-                                   .custom_action          = flush_modifiers,
-                                   .options                = ko_options_default,
-                                   .trigger                = KC_0,
-                                   .replacement            = KC_0,
-                                   .enabled                = NULL};
+const key_override_t ko_sh_1 = ncts_ko_shift_num_dvp( KC_1 );     // shift + 1 is 1
+const key_override_t ko_sh_2 = ncts_ko_shift_num_dvp( KC_2 );     // shift + 2 is 2
+const key_override_t ko_sh_3 = ncts_ko_shift_num_dvp( KC_3 );     // shift + 3 is 3
+const key_override_t ko_sh_4 = ncts_ko_shift_num_dvp( KC_4 );     // shift + 4 is 4
+const key_override_t ko_sh_5 = ncts_ko_shift_num_dvp( KC_5 );     // shift + 5 is 5
+const key_override_t ko_sh_6 = ncts_ko_shift_num_dvp( KC_6 );     // shift + 6 is 6
+const key_override_t ko_sh_7 = ncts_ko_shift_num_dvp( KC_7 );     // shift + 7 is 7
+const key_override_t ko_sh_8 = ncts_ko_shift_num_dvp( KC_8 );     // shift + 8 is 8
+const key_override_t ko_sh_9 = ncts_ko_shift_num_dvp( KC_9 );     // shift + 9 is 9
+const key_override_t ko_sh_0 = ncts_ko_shift_num_dvp( KC_0 );     // shift + 0 is 0
 
 const key_override_t **key_overrides = (const key_override_t *[]){
   &ko_grv,
@@ -231,29 +162,47 @@ const key_override_t **key_overrides = (const key_override_t *[]){
   NULL
 };
 
+void show_layer_leds(uint16_t l_id) {
+  l_id++;
+  writePin( LED_CAPS_LOCK_PIN, !(l_id >> 3 & 1) );
+  writePin( LED_SCROLL_LOCK_PIN, !(l_id >> 3 & 1) );
+  writePin( LED_WIN_LOCK_PIN, !(l_id >> 1 & 1) );
+  writePin( LED_MR_LOCK_PIN, !(l_id & 1) );
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWRT:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWR_LAYER);
+        show_layer_leds(_QWR_LAYER);
       }
       return false;
       break;
     case DVRK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_DV_LAYER);
+        show_layer_leds(_DV_LAYER);
       }
       return false;
       break;
     case DVRK_P:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_DVP_LAYER);
+        show_layer_leds(_DVP_LAYER);
       }
       return false;
       break;
   }
   return true;
+}
+
+// start the keybard with the default layer
+// and signal this status on the keyboard LEDs
+void keyboard_post_init_user(void) {
+  set_single_persistent_default_layer(_QWR_LAYER);
+  show_layer_leds(_QWR_LAYER);
 }
 
 void double_tap_q(qk_tap_dance_state_t *state, void *user_data) {
