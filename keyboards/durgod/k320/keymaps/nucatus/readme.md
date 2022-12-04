@@ -25,9 +25,9 @@ by the status LEDs in a binary representation
 
 ## Non-standard mappings
 
-1. CapsLock is remapped to LCTL, but a double tap would lock/unlock caps.
-2. In both dvorak layouts, the `'` and `;` keys are swapped.
-3. Tap in left shift is mapped to ESC in all layouts
+1. CapsLock is remapped to LCTL and a single tap will send `ESC`
+2. Double tap on LSFT will lock the caps
+3. In both dvorak layouts, the `'` and `;` keys are swapped.
 
 ## Macros
 
