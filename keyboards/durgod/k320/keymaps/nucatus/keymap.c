@@ -37,7 +37,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
        .trigger_mods           = (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)), \
        .layers                 = (1 << _DVP_LAYER),                     \
        .suppressed_mods        = (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)), \
-       .custom_action          = (flush_modifiers),                     \
        .options                = (ko_options_default),                  \
        .trigger                = (kc_num),                              \
        .replacement            = (kc_num),                              \
@@ -89,15 +88,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______)
 };
 
-// Use with suppressed_mods to clear the modifiers
-// BEFORE the replacement key is sent.
-bool flush_modifiers(bool key_down, void* context)
-{
-    send_keyboard_report();
-    return true;
-}
-
-
 const key_override_t ko_grv = ko_make_with_layers_and_negmods(0, KC_GRV,  LSFT(KC_4),    1 << _DVP_LAYER, ~0); // ` is $
 const key_override_t ko_1   = ko_make_with_layers_and_negmods(0, KC_1,    LSFT(KC_7),    1 << _DVP_LAYER, ~0); // 1 is &
 const key_override_t ko_2   = ko_make_with_layers_and_negmods(0, KC_2,    LSFT(KC_LBRC), 1 << _DVP_LAYER, ~0); // 2 is {
@@ -113,11 +103,11 @@ const key_override_t ko_lbr = ko_make_with_layers_and_negmods(0, KC_LBRC, LSFT(K
 const key_override_t ko_rbr = ko_make_with_layers_and_negmods(0, KC_RBRC, KC_GRV,        1 << _DVP_LAYER, ~0); // ] is `
 const key_override_t ko_eql = ko_make_with_layers_and_negmods(0, KC_EQL,  LSFT(KC_6),    1 << _DVP_LAYER, ~0); // = is ^
 
-const key_override_t ko_sh_grv = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_GRV,  KC_5,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + ` is %
-const key_override_t ko_sh_lbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_LBRC, KC_GRV, 1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + [ is ~
-const key_override_t ko_sh_rbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_RBRC, KC_1,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + ] is !
-const key_override_t ko_sh_eql = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_EQL,  KC_2,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + = is @
-const key_override_t ko_sh_bsl = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_BSLS, KC_3,   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + \ is #
+const key_override_t ko_sh_grv = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_GRV,  LSFT(KC_5),   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + ` is %
+const key_override_t ko_sh_lbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_LBRC, LSFT(KC_GRV), 1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + [ is ~
+const key_override_t ko_sh_rbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_RBRC, LSFT(KC_1),   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + ] is !
+const key_override_t ko_sh_eql = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_EQL,  LSFT(KC_2),   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + = is @
+const key_override_t ko_sh_bsl = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_BSLS, LSFT(KC_3),   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + \ is #
 
 const key_override_t ko_sh_1 = ncts_ko_shift_num_dvp( KC_1 );     // shift + 1 is 1
 const key_override_t ko_sh_2 = ncts_ko_shift_num_dvp( KC_2 );     // shift + 2 is 2
