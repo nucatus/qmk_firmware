@@ -43,6 +43,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
        .enabled                = (NULL)                                 \
   })
 
+#define ncts_ko_with_mods(kc_t, kc_r, tr_mods)                              \
+  ((const key_override_t){                                                  \
+       .trigger_mods           = (tr_mods),                                 \
+       .layers                 = (1 << _DVP_LAYER),                         \
+       .suppressed_mods        = (0),                                       \
+       .options                = (ko_options_default | ko_option_one_mod),  \
+       .trigger                = (kc_t),                                    \
+       .replacement            = (kc_r),                                    \
+       .enabled                = (NULL)                                     \
+  })
+
+
 /*
 [_TRANSP_LAYER] = LAYOUT_tkl_ansi(
     _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -88,20 +100,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______)
 };
 
-const key_override_t ko_grv = ko_make_with_layers_and_negmods(0, KC_GRV,  LSFT(KC_4),    1 << _DVP_LAYER, ~0); // ` is $
-const key_override_t ko_1   = ko_make_with_layers_and_negmods(0, KC_1,    LSFT(KC_7),    1 << _DVP_LAYER, ~0); // 1 is &
-const key_override_t ko_2   = ko_make_with_layers_and_negmods(0, KC_2,    LSFT(KC_LBRC), 1 << _DVP_LAYER, ~0); // 2 is {
-const key_override_t ko_3   = ko_make_with_layers_and_negmods(0, KC_3,    LSFT(KC_9),    1 << _DVP_LAYER, ~0); // 3 is (
-const key_override_t ko_4   = ko_make_with_layers_and_negmods(0, KC_4,    KC_LBRC,       1 << _DVP_LAYER, ~0); // 4 is [
-const key_override_t ko_5   = ko_make_with_layers_and_negmods(0, KC_5,    KC_EQL,        1 << _DVP_LAYER, ~0); // 5 is =
-const key_override_t ko_6   = ko_make_with_layers_and_negmods(0, KC_6,    LSFT(KC_EQL),  1 << _DVP_LAYER, ~0); // 6 is +
-const key_override_t ko_7   = ko_make_with_layers_and_negmods(0, KC_7,    KC_RBRC,       1 << _DVP_LAYER, ~0); // 7 is ]
-const key_override_t ko_8   = ko_make_with_layers_and_negmods(0, KC_8,    LSFT(KC_0),    1 << _DVP_LAYER, ~0); // 8 is }
-const key_override_t ko_9   = ko_make_with_layers_and_negmods(0, KC_9,    LSFT(KC_RBRC), 1 << _DVP_LAYER, ~0); // 9 is )
-const key_override_t ko_0   = ko_make_with_layers_and_negmods(0, KC_0,    LSFT(KC_8),    1 << _DVP_LAYER, ~0); // 0 is *
-const key_override_t ko_lbr = ko_make_with_layers_and_negmods(0, KC_LBRC, LSFT(KC_BSLS), 1 << _DVP_LAYER, ~0); // [ is |
-const key_override_t ko_rbr = ko_make_with_layers_and_negmods(0, KC_RBRC, KC_GRV,        1 << _DVP_LAYER, ~0); // ] is `
-const key_override_t ko_eql = ko_make_with_layers_and_negmods(0, KC_EQL,  LSFT(KC_6),    1 << _DVP_LAYER, ~0); // = is ^
+const key_override_t ko_grv = ko_make_with_layers_and_negmods(0, KC_GRV,  S(KC_4),    1 << _DVP_LAYER, ~0); // ` is $
+const key_override_t ko_1   = ko_make_with_layers_and_negmods(0, KC_1,    S(KC_7),    1 << _DVP_LAYER, ~0); // 1 is &
+const key_override_t ko_2   = ko_make_with_layers_and_negmods(0, KC_2,    S(KC_LBRC), 1 << _DVP_LAYER, ~0); // 2 is {
+const key_override_t ko_3   = ko_make_with_layers_and_negmods(0, KC_3,    S(KC_9),    1 << _DVP_LAYER, ~0); // 3 is (
+const key_override_t ko_4   = ko_make_with_layers_and_negmods(0, KC_4,    KC_LBRC,    1 << _DVP_LAYER, ~0); // 4 is [
+const key_override_t ko_5   = ko_make_with_layers_and_negmods(0, KC_5,    KC_EQL,     1 << _DVP_LAYER, ~0); // 5 is =
+const key_override_t ko_6   = ko_make_with_layers_and_negmods(0, KC_6,    S(KC_EQL),  1 << _DVP_LAYER, ~0); // 6 is +
+const key_override_t ko_7   = ko_make_with_layers_and_negmods(0, KC_7,    KC_RBRC,    1 << _DVP_LAYER, ~0); // 7 is ]
+const key_override_t ko_8   = ko_make_with_layers_and_negmods(0, KC_8,    S(KC_0),    1 << _DVP_LAYER, ~0); // 8 is }
+const key_override_t ko_9   = ko_make_with_layers_and_negmods(0, KC_9,    S(KC_RBRC), 1 << _DVP_LAYER, ~0); // 9 is )
+const key_override_t ko_0   = ko_make_with_layers_and_negmods(0, KC_0,    S(KC_8),    1 << _DVP_LAYER, ~0); // 0 is *
+const key_override_t ko_lbr = ko_make_with_layers_and_negmods(0, KC_LBRC, S(KC_BSLS), 1 << _DVP_LAYER, ~0); // [ is |
+const key_override_t ko_rbr = ko_make_with_layers_and_negmods(0, KC_RBRC, KC_GRV,     1 << _DVP_LAYER, ~0); // ] is `
+const key_override_t ko_eql = ko_make_with_layers_and_negmods(0, KC_EQL,  S(KC_6),    1 << _DVP_LAYER, ~0); // = is ^
+
+const key_override_t mod_ko_4   = ncts_ko_with_mods(KC_4,   KC_LBRC, ~MOD_MASK_SHIFT);
+const key_override_t mod_ko_5   = ncts_ko_with_mods(KC_5,   KC_EQL,  ~MOD_MASK_SHIFT);
+const key_override_t mod_ko_7   = ncts_ko_with_mods(KC_7,   KC_RBRC, ~MOD_MASK_SHIFT); 
+const key_override_t mod_ko_eql = ncts_ko_with_mods(KC_EQL, S(KC_6), ~MOD_MASK_SHIFT);
 
 const key_override_t ko_sh_grv = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_GRV,  LSFT(KC_5),   1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + ` is %
 const key_override_t ko_sh_lbr = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, KC_LBRC, LSFT(KC_GRV), 1 << _DVP_LAYER, ~MOD_MASK_SHIFT); // shift + [ is ~
@@ -135,6 +152,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
   &ko_lbr, 
   &ko_rbr,
   &ko_eql,
+
+  &mod_ko_4,
+  &mod_ko_5,
+  &mod_ko_7,
+  &mod_ko_eql,
 
   &ko_sh_grv,
   &ko_sh_rbr,
