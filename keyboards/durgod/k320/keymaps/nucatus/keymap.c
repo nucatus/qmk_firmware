@@ -20,10 +20,10 @@ enum {
     TD_A
 };
 
-void double_tap_q(qk_tap_dance_state_t *state, void *user_data);
+void double_tap_q(tap_dance_state_t *state, void *user_data);
 
 // Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
     [TD_Q] = ACTION_TAP_DANCE_FN(double_tap_q)
 };
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_DVP_LAYER] = LAYOUT_tkl_ansi(
     KC_ESC,                   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,
-    KC_GRV,         KC_4,     KC_3,     KC_2,     KC_1,     KC_5,     KC_6,     KC_0,     KC_9,     KC_8,     KC_7,     KC_LBRC,  KC_RBRC,  KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,
+    KC_GRV,         KC_3,     KC_2,     KC_0,     KC_1,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_LBRC,  KC_RBRC,  KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,
     KC_TAB,         KC_SCLN,  KC_COMM,  KC_DOT,   KC_P,     KC_Y,     KC_F,     KC_G,     KC_C,     KC_R,     KC_D,     KC_SLSH,  KC_EQL,   KC_BSLS,  KC_DEL,   KC_END,   KC_PGDN,
     LCTL_T(KC_ESC),           KC_A,     KC_O,     KC_E,     KC_U,     KC_I,     KC_L,     KC_H,     KC_T,     KC_N,     KC_S,     KC_MINS,  KC_ENT,
     TD(TD_CAPS),    KC_QUOT,  TD(TD_Q), KC_J,     KC_K,     KC_X,     KC_B,     KC_M,     KC_W,     KC_V,     KC_Z,     KC_RSFT,                      KC_UP,
@@ -101,16 +101,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const key_override_t ko_grv = ko_make_with_layers_and_negmods(0, KC_GRV,  S(KC_4),    1 << _DVP_LAYER, ~0); // ` is $
-const key_override_t ko_1   = ko_make_with_layers_and_negmods(0, KC_4,    S(KC_7),    1 << _DVP_LAYER, ~0); // 1 is &
-const key_override_t ko_2   = ko_make_with_layers_and_negmods(0, KC_3,    S(KC_LBRC), 1 << _DVP_LAYER, ~0); // 2 is {
-const key_override_t ko_3   = ko_make_with_layers_and_negmods(0, KC_2,    S(KC_9),    1 << _DVP_LAYER, ~0); // 3 is (
+const key_override_t ko_1   = ko_make_with_layers_and_negmods(0, KC_3,    S(KC_7),    1 << _DVP_LAYER, ~0); // 1 is &
+const key_override_t ko_2   = ko_make_with_layers_and_negmods(0, KC_2,    S(KC_LBRC), 1 << _DVP_LAYER, ~0); // 2 is {
+const key_override_t ko_3   = ko_make_with_layers_and_negmods(0, KC_0,    S(KC_9),    1 << _DVP_LAYER, ~0); // 3 is (
 const key_override_t ko_4   = ko_make_with_layers_and_negmods(0, KC_1,    KC_LBRC,    1 << _DVP_LAYER, ~0); // 4 is [
-const key_override_t ko_5   = ko_make_with_layers_and_negmods(0, KC_5,    KC_EQL,     1 << _DVP_LAYER, ~0); // 5 is =
-const key_override_t ko_6   = ko_make_with_layers_and_negmods(0, KC_6,    S(KC_EQL),  1 << _DVP_LAYER, ~0); // 6 is +
-const key_override_t ko_7   = ko_make_with_layers_and_negmods(0, KC_0,    KC_RBRC,    1 << _DVP_LAYER, ~0); // 7 is ]
-const key_override_t ko_8   = ko_make_with_layers_and_negmods(0, KC_9,    S(KC_0),    1 << _DVP_LAYER, ~0); // 8 is }
+const key_override_t ko_5   = ko_make_with_layers_and_negmods(0, KC_4,    KC_EQL,     1 << _DVP_LAYER, ~0); // 5 is =
+const key_override_t ko_6   = ko_make_with_layers_and_negmods(0, KC_5,    S(KC_EQL),  1 << _DVP_LAYER, ~0); // 6 is +
+const key_override_t ko_7   = ko_make_with_layers_and_negmods(0, KC_6,    KC_RBRC,    1 << _DVP_LAYER, ~0); // 7 is ]
+const key_override_t ko_8   = ko_make_with_layers_and_negmods(0, KC_7,    S(KC_0),    1 << _DVP_LAYER, ~0); // 8 is }
 const key_override_t ko_9   = ko_make_with_layers_and_negmods(0, KC_8,    S(KC_RBRC), 1 << _DVP_LAYER, ~0); // 9 is )
-const key_override_t ko_0   = ko_make_with_layers_and_negmods(0, KC_7,    S(KC_8),    1 << _DVP_LAYER, ~0); // 0 is *
+const key_override_t ko_0   = ko_make_with_layers_and_negmods(0, KC_9,    S(KC_8),    1 << _DVP_LAYER, ~0); // 0 is *
 const key_override_t ko_lbr = ko_make_with_layers_and_negmods(0, KC_LBRC, S(KC_BSLS), 1 << _DVP_LAYER, ~0); // [ is |
 const key_override_t ko_rbr = ko_make_with_layers_and_negmods(0, KC_RBRC, KC_GRV,     1 << _DVP_LAYER, ~0); // ] is `
 const key_override_t ko_eql = ko_make_with_layers_and_negmods(0, KC_EQL,  S(KC_6),    1 << _DVP_LAYER, ~0); // = is ^
@@ -220,7 +220,7 @@ void keyboard_post_init_user(void) {
   show_layer_leds(_QWR_LAYER);
 }
 
-void double_tap_q(qk_tap_dance_state_t *state, void *user_data) {
+void double_tap_q(tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     tap_code16(KC_Q);
     reset_tap_dance(state);
